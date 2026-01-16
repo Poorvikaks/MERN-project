@@ -16,6 +16,7 @@ const vedioSchema = new Schema(
   { timestamps: true }
 );
 
+
 vedioSchema.plugin(mongooseAggregatePaginate);
 
 export const Vedio = mongoose.Schema("Vedio", vedioSchema);
