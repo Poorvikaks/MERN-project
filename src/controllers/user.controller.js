@@ -7,7 +7,6 @@ import { ApiResponse } from "../utils/apiResponse.js";
 const registerUser = asyncHandler(async (req, res) => {
   // get user details from front end
   const { fullname, email, username, password } = req.body;
-  console.log("email:", email);
 
   //validation - not empty
   if (
@@ -23,15 +22,18 @@ const registerUser = asyncHandler(async (req, res) => {
   if (exsisteduser) {
     throw new ApiError(409, "user with username or email already esist");
   }
-  console.log("FILES => ", req.files);
 
   // check for images , check for avatar
   const avatarlocalpath = req.files?.avatar[0]?.path;
-  const coverimagelocalpath = req.files?.coverImage[0]?.path;
+  // const coverimagelocalpath = req.files?.coverImage[0]?.path;
+  let coverimagelocalpath;
+  if (req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length >0) {
+    coverimagelocalpath = req.files.coverImage[0].path
+  }
+
   if (!avatarlocalpath) {
     throw new ApiError(400, " avatar upload failed ");
   }
-  console.log("Avatar local path:", avatarlocalpath);
 
   // upload them to cloudinary , avatar
   const avatar = await uploadOnCloundinary(avatarlocalpath);
