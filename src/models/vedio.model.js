@@ -1,7 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
 
-
 const vedioSchema = new Schema(
   {
     vedioFile: { type: String, required: true },
@@ -15,7 +14,6 @@ const vedioSchema = new Schema(
   },
   { timestamps: true }
 );
-
 
 vedioSchema.plugin(mongooseAggregatePaginate);
 
