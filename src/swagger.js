@@ -7,6 +7,7 @@ const doc = {
   },
   host: "localhost:8000",
   schemes: ["http"],
+  basePath: "/api/v1/users",
 };
 
 const outputFile = "./src/swagger-output.json";
